@@ -233,6 +233,10 @@
       function ChatMessages({ chatMessages }) {
         const chatMessagesRef = useAutoScroll([chatMessages]);
         
+        // Custom Hook: this creates a ref for the chat messages container.
+        // Whenever the dependencies change, it scrolls that container to the bottom.
+        // In this component, [chatMessages] is passed in so the chat scrolls down
+        // automatically every time a new message is added.
         function useAutoScroll(dependencies) {
           const containerRef = React.useRef(null);
           React.useEffect(() => {
