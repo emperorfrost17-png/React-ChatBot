@@ -4,7 +4,7 @@ A simple chatbot application built with **React** that allows users to send mess
 
 ## 📸 Preview
 
-<img src="robot.png" alt="Chatbot Preview" width="150">
+[<img src="robot.png" alt="Chatbot Preview" width="150">](https://emperorfrost17-png.github.io/React-ChatBot/)
 
 ---
 
