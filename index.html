@@ -122,7 +122,7 @@
           }
           //This happens right after the check passes, meaning "we are now busy sending a message." This is what makes the check in step 2 actually work the next time someone tries to send.
           setIsLoading(true);
-          if (!response) {
+          
             setChatMessages([
               ...newChatMessages,
               {
@@ -133,7 +133,7 @@
                 id: crypto.randomUUID(),
               },
             ]);
-          }
+          
           //This is for getting a response from the chatbot loaded from an external js library
           const response = await Chatbot.getResponseAsync(inputText);
           setChatMessages([
