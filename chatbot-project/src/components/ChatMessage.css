@@ -1,0 +1,28 @@
+.chat-message-user {
+  display: flex;
+  justify-content: flex-end;
+  /* align-items: start; instructs the browser to align all items to the top of the container rather than stretching them, ensuring the profile images maintain their original size*/
+  /* By default, flex items have align-items: stretch, which forces elements to stretch and fill the entire height of the container */
+  align-items: start;
+}
+.chat-message-robot {
+  display: flex;
+  justify-content: flex-start;
+  align-items: start;
+}
+.chat-message-text {
+  background-color: rgb(238, 238, 238);
+  border-radius: 10px;
+  padding: 15px 20px;
+  margin-right: 10px;
+  margin-left: 10px;
+  margin-bottom: 20px;
+  max-width: 300px;
+}
+.chat-message-profile {
+  width: 45px;
+}
+.loading-gif {
+  height: 40px;
+  margin: -15px;
+}

@@ -1,6 +1,7 @@
 import { useRef, useEffect } from "react";
 import { ChatMessage } from "./ChatMessage";
- function ChatMessages({ chatMessages }) {
+import "./ChatMessages.css";
+function ChatMessages({ chatMessages }) {
   const chatMessagesRef = useAutoScroll([chatMessages]);
 
   // Custom Hook: this creates a ref for the chat messages container.
@@ -15,7 +16,7 @@ import { ChatMessage } from "./ChatMessage";
       if (containerElem) {
         //So this line says: "set the scroll position equal to the full content height," which effectively scrolls the container all the way to the bottom.
         containerElem.scrollTop = containerElem.scrollHeight;
-      }
+      } // eslint-disable-next-line react-hooks/exhaustive-deps
     }, dependencies); //this is called a dependency array because it controls when the useEffect runs
 
     return containerRef;

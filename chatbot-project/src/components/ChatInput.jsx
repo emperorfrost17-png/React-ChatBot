@@ -1,9 +1,9 @@
 //I imported useState from React Package folder
-import { useState} from "react";
+import { useState } from "react";
 import { Chatbot } from "supersimpledev";
 //For importing an image just give a name you want and locate the file pathe where the file is
 import LoadingGif from "../assets/loading-spinner.gif";
-
+import "./ChatInput.css";
 
 export function ChatInput({ chatMessages, setChatMessages }) {
   //in React use State for saving data that changes over time

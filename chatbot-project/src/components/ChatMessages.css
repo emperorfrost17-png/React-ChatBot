@@ -1,0 +1,7 @@
+.chat-messages-container {
+  flex-grow: 1;
+  margin-top: 20px;
+  overflow: scroll;
+  /*This is to hide the scroll bar*/
+  scrollbar-width: none;
+}
