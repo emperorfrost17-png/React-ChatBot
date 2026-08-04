@@ -1,10 +1,11 @@
 //I imported useState from React Package folder
-import { useState} from "react";
+import { useState, useEffect} from "react";
 import {ChatInput} from './components/ChatInput'
 import ChatMessages from './components/ChatMessages'
 //This is for loading the css
 //this is feature of vite it helps us import any file
 import "./App.css";
+import { Chatbot } from "supersimpledev";
 
 
 
@@ -15,6 +16,8 @@ import "./App.css";
 
 
 function App() {
+ 
+
   //State is the data connected to the
   //this will convert this data into state so that when we update the data it will update the html
   const [chatMessages, setChatMessages] = useState([]);
@@ -23,6 +26,12 @@ function App() {
   //2. A function that updates the data
 
   //N/B: If you update the data directly React will not update the html but if use the function that useState retutns it will returns React will update the html
+  useEffect(() => {
+    Chatbot.addResponses({
+      hi : 'Whats up Nigga',
+      yo: 'Fuck My Ass please Im begging you'
+    })
+  }, [])
   return (
     <div className="app-container">
       {/*
@@ -35,7 +44,7 @@ function App() {
           Welcome to the chatbot project! Send a message using the textbox below
         </p>
       )}
-      <ChatMessages chatMessages={chatMessages} />
+      <ChatMessages chatMessages={chatMessages}/>
       <ChatInput
         chatMessages={chatMessages}
         setChatMessages={setChatMessages}

@@ -1,3 +1,4 @@
+import dayjs from "dayjs";
 //I imported useState from React Package folder
 import { useState } from "react";
 import { Chatbot } from "supersimpledev";
@@ -18,7 +19,12 @@ export function ChatInput({ chatMessages, setChatMessages }) {
   async function sendMessage() {
     const newChatMessages = [
       ...chatMessages,
-      { message: inputText, sender: "user", id: crypto.randomUUID() },
+      {
+        message: inputText,
+        sender: "user",
+        id: crypto.randomUUID(),
+        time: dayjs().valueOf(),
+      },
     ];
     setChatMessages(newChatMessages);
 
@@ -43,7 +49,12 @@ export function ChatInput({ chatMessages, setChatMessages }) {
     const response = await Chatbot.getResponseAsync(inputText);
     setChatMessages([
       ...newChatMessages,
-      { message: response, sender: "robot", id: crypto.randomUUID() },
+      {
+        message: response,
+        sender: "robot",
+        time: dayjs().valueOf(),
+        id: crypto.randomUUID(),
+      },
     ]);
     //Once the bot's response has come back and been added to the chat, isLoading resets to false, so the user can send another message.
     setIsLoading(false);
