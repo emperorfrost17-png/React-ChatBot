@@ -1,0 +1,41 @@
+<!doctype html>
+<html>
+  <head>
+    <title>React Basics</title>
+  </head>
+  <body>
+    <div class="js-container"></div>
+    <!--These are for loading the React external library-->
+    <!--This is for react shared features-->
+    <script src="https://unpkg.com/supersimpledev/react.js"></script>
+    <!--This is for react websites. ReactDOM is for websites and ReactNative is for Mobile apps so right now we are using ReactDOM-->
+    <script src="https://unpkg.com/supersimpledev/react-dom.js"></script>
+
+    <!--This is to load an external library called Babel-->
+
+    <!--Babel is a JavaScript compiler used to translate code(JSX)that browsers cannot natively understand  into standard JavaScript-->
+
+    <!--React uses JSX (JavaScript XML), an enhanced syntax that allows you to write HTML-like code directly inside your JavaScript. Since web browsers only understand standard JavaScript, Babel is essential for converting this JSX syntax into the regular JavaScript that browsers can execute-->
+    <script src="https://unpkg.com/supersimpledev/babel.js"></script>
+    <script type="text/babel">
+      //This is an example of JSX same as JavaScript but i can write HTML directly in my JavaScript code
+      //You can even insert javascript code into JSX elements by using curly {}
+      const button = <button>Hello My Nigga</button>;
+      const paragraph = <p>Paragraph of text Nigga</p>;
+
+      const div = (
+        <div>
+          <button>Hello My Nigga</button>
+          <p>Paragraph of text Nigga {2 + 2}</p>
+        </div>
+      );
+
+      const container = document.querySelector(".js-container");
+      //ReactDOM.createRoot()  sets up react
+      //In this case everything we create with react will be displayed in the div above
+      //it uses (container) to keep things organized
+      //.render is a react feature for displaying an element e.g variable, string etc
+      ReactDOM.createRoot(container).render(div);
+    </script>
+  </body>
+</html>
