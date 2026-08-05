@@ -13,7 +13,7 @@ function App() {
 
       N/B: All these Routes linked share on HTML file which is index.html
       */}
-      <index element={<HomePage />} />
+      <Route index element={<HomePage />} />
       <Route path="checkout" element={<div>test Checkout Page</div>} />
     </Routes>
   );
