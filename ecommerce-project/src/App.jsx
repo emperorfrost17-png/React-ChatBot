@@ -12,7 +12,7 @@ function App() {
       1. path props is for the URL path of the page. for it to be empty just put "/" or just use the index prop it is the same
       2. element props tells React which element or component to display e.g <HomePage />
 
-      N/B: All these Routes linked share on HTML file which is index.html
+      N/B: All these Routes linked share one HTML file which is index.html
       */}
       <Route index element={<HomePage />} />
       <Route path="checkout" element={<CheckoutPage />} />
