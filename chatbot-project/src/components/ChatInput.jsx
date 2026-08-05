@@ -67,6 +67,9 @@ export function ChatInput({ chatMessages, setChatMessages }) {
       setInputText("");
     }
   }
+  function clearMessages() {
+    setChatMessages([]);
+  }
 
   return (
     // <></> This is called a fragment i used this so that it will directly insert this code inside the div variable before using that it was creating an extra div which sometimes we might not want
@@ -89,6 +92,9 @@ export function ChatInput({ chatMessages, setChatMessages }) {
         className="send-button"
       >
         Send
+      </button>
+      <button className="clear-button" onClick={clearMessages}>
+        Clear
       </button>
     </div>
   );

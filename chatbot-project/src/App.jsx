@@ -1,26 +1,20 @@
 //I imported useState from React Package folder
-import { useState, useEffect} from "react";
-import {ChatInput} from './components/ChatInput'
-import ChatMessages from './components/ChatMessages'
+import { useState, useEffect } from "react";
+import { ChatInput } from "./components/ChatInput";
+import ChatMessages from "./components/ChatMessages";
 //This is for loading the css
 //this is feature of vite it helps us import any file
 import "./App.css";
 import { Chatbot } from "supersimpledev";
 
-
-
-
 //The code below is the same as this i just used destructuring
 
-
-
-
 function App() {
- 
-
   //State is the data connected to the
   //this will convert this data into state so that when we update the data it will update the html
-  const [chatMessages, setChatMessages] = useState([]);
+  const [chatMessages, setChatMessages] = useState(
+    JSON.parse(localStorage.getItem("messages")) || [],
+  );
   //now useState returns two values
   //1. The current data
   //2. A function that updates the data
@@ -28,10 +22,16 @@ function App() {
   //N/B: If you update the data directly React will not update the html but if use the function that useState retutns it will returns React will update the html
   useEffect(() => {
     Chatbot.addResponses({
-      hi : 'Whats up Nigga',
-      yo: 'Fuck My Ass please Im begging you'
-    })
-  }, [])
+      hi: "Whats up Nigga",
+      yo: "Fuck My Ass please I'm begging you Onegai",
+      stfu: "BITCH! you shut the fuck up",
+      sorry: "Don't Worry Bro I got you",
+    });
+  }, []);
+
+  useEffect(() => {
+    localStorage.setItem("messages", JSON.stringify(chatMessages));
+  }, [chatMessages]);
   return (
     <div className="app-container">
       {/*
@@ -44,7 +44,7 @@ function App() {
           Welcome to the chatbot project! Send a message using the textbox below
         </p>
       )}
-      <ChatMessages chatMessages={chatMessages}/>
+      <ChatMessages chatMessages={chatMessages} />
       <ChatInput
         chatMessages={chatMessages}
         setChatMessages={setChatMessages}
