@@ -6,6 +6,7 @@ export function CheckoutPage() {
     <>
       {/*This is for the Checkout Page to have a different title */}
       <title>Checkout</title>
+      <link rel="icon" type="image/svg+xml" href="cart-favicon.png" />
 
       <CheckoutHeader />
 
