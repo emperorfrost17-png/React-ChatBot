@@ -111,6 +111,10 @@
   padding-left: 13px;
   padding-right: 13px;
 }
+/*This is for styling a page that is active/currently open thanks to NavLink*/
+.header .orders-link.active {
+  text-decoration: underline;
+}
 
 .header .orders-text {
   display: block;
