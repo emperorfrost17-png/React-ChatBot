@@ -1,5 +1,10 @@
 import { NavLink } from "react-router";
 import "./Header.css";
+import LogoWhite from '../assets/images/logo-white.png'
+import MobileLogoWhite from '../assets/images/mobile-logo-white.png'
+import CartIcon from '../assets/images/icons/cart-icon.png'
+import SearchIcon from '../assets/images/icons/search-icon.png'
+
 export function Header() {
   return (
     <div className="header">
@@ -8,8 +13,8 @@ export function Header() {
 
         {/*But it has a special feature. The special feature is that it knows which page is loaded . For example, If you're on the Orders page, it adds a class called active to the Orders link (className="orders-link ... active"). */}
         <NavLink to="/" className="header-link">
-          <img className="logo" src="images/logo-white.png" />
-          <img className="mobile-logo" src="images/mobile-logo-white.png" />
+          <img className="logo" src={LogoWhite} />
+          <img className="mobile-logo" src={MobileLogoWhite} />
         </NavLink>
       </div>
 
@@ -17,7 +22,7 @@ export function Header() {
         <input className="search-bar" type="text" placeholder="Search" />
 
         <button className="search-button">
-          <img className="search-icon" src="images/icons/search-icon.png" />
+          <img className="search-icon" src={SearchIcon} />
         </button>
       </div>
 
@@ -27,7 +32,7 @@ export function Header() {
         </NavLink>
 
         <NavLink className="cart-link header-link" to="/checkout">
-          <img className="cart-icon" src="images/icons/cart-icon.png" />
+          <img className="cart-icon" src={CartIcon} />
           <div className="cart-quantity">3</div>
           <div className="cart-text">Cart</div>
         </NavLink>
