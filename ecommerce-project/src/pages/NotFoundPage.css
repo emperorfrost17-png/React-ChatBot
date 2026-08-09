@@ -1,0 +1,8 @@
+.not-found{
+  display: flex;
+  height: 100vh;
+  justify-content: center;
+  align-items: center;
+  font-size: 150px;
+  color: rgb(8, 79, 45);
+}
