@@ -1,3 +1,4 @@
+import axios from "axios";
 import { Header } from "../components/Header";
 import { products } from "../../starting-code/data/products";
 import "./HomePage.css";
@@ -7,13 +8,12 @@ export function HomePage() {
   //The string is for the URL where we are fetching the data from
   //N:B returns a Promise and a Promise lets us wait for asynchronous code to finsish
   //when it finishes in the future it runs the function in .then()
-  fetch("http://localhost:3000/api/products").then((response) => {
-    //.json() gives us the data attached to the response
-    //it is also asychronous just like fetch response and also a promise
-   return response.json()
-  }).then((data) => {
-      console.log(data);
-    });;
+
+  //The difference between fetch() and axios.get() is that for axios, the data  will be saved directly into the response directly while for fetch it isn't
+  axios.get("http://localhost:3000/api/products").then((response) => {
+    console.log(response.data);
+  });
+
   return (
     <>
       <title>Ecommerce Project</title>
