@@ -5,6 +5,7 @@ import "./HomePage.css";
 import CheckMarkIcon from "../assets/images/icons/checkmark.png";
 export function HomePage() {
   const [products, setProducts] = useState([]);
+  const [cart, setCart] = useState([]);
   useEffect(() => {
     //This is to get data from the backend
     //The string is for the URL where we are fetching the data from
@@ -15,6 +16,10 @@ export function HomePage() {
     axios.get("http://localhost:3000/api/products").then((response) => {
       setProducts(response.data);
     });
+    //This for fetching the cart data
+    axios.get("http://localhost:3000/api/cart-items").then((response) => {
+      setCart(response.data);
+    });
   }, []);
 
   return (
@@ -22,7 +27,7 @@ export function HomePage() {
       <title>Ecommerce Project</title>
       <link rel="icon" type="image/svg+xml" href="home-favicon.png" />
 
-      <Header />
+      <Header cart={cart} />
 
       <div className="home-page">
         <div className="products-grid">
