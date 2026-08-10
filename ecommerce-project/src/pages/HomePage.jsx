@@ -13,11 +13,11 @@ export function HomePage() {
     //when it finishes in the future it runs the function in .then()
 
     //The difference between fetch() and axios.get() is that for axios, the data  will be saved directly into the response directly while for fetch it isn't
-    axios.get("http://localhost:3000/api/products").then((response) => {
+    axios.get("/api/products").then((response) => {
       setProducts(response.data);
     });
     //This for fetching the cart data
-    axios.get("http://localhost:3000/api/cart-items").then((response) => {
+    axios.get("/api/cart-items").then((response) => {
       setCart(response.data);
     });
   }, []);
