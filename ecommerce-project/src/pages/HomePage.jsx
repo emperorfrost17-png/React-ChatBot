@@ -3,9 +3,9 @@ import { useEffect, useState } from "react";
 import { Header } from "../components/Header";
 import "./HomePage.css";
 import CheckMarkIcon from "../assets/images/icons/checkmark.png";
-export function HomePage() {
+export function HomePage({ cart }) {
   const [products, setProducts] = useState([]);
-  const [cart, setCart] = useState([]);
+
   useEffect(() => {
     //This is to get data from the backend
     //The string is for the URL where we are fetching the data from
@@ -15,10 +15,6 @@ export function HomePage() {
     //The difference between fetch() and axios.get() is that for axios, the data  will be saved directly into the response directly while for fetch it isn't
     axios.get("/api/products").then((response) => {
       setProducts(response.data);
-    });
-    //This for fetching the cart data
-    axios.get("/api/cart-items").then((response) => {
-      setCart(response.data);
     });
   }, []);
 

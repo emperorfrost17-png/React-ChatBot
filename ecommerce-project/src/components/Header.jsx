@@ -6,12 +6,15 @@ import CartIcon from "../assets/images/icons/cart-icon.png";
 import SearchIcon from "../assets/images/icons/search-icon.png";
 
 export function Header({ cart }) {
-  let totalQuantity = 0
+  let totalQuantity = 0;
 
-  //This is for calculating the cart quantity
-  cart.forEach((cartItem) => {
-    totalQuantity += cartItem.quantity
-  })
+  if (cart) {
+    //This is for calculating the cart quantity
+    cart.forEach((cartItem) => {
+      totalQuantity += cartItem.quantity;
+    });
+  }
+
   return (
     <div className="header">
       <div className="left-section">

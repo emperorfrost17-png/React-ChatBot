@@ -1,3 +1,5 @@
+import axios from "axios";
+import { useEffect, useState } from "react";
 import { Routes, Route } from "react-router";
 import { HomePage } from "./pages/HomePage";
 import { CheckoutPage } from "./pages/checkout/CheckoutPage";
@@ -7,6 +9,18 @@ import { NotFoundPage } from "./pages/NotFoundPage";
 import "./App.css";
 
 function App() {
+  //This under is called lifting the state up because the cart was first in HomePage.jsx and i removed it from there and put it in App.jsx then later shared cart between HomePage.jsx and CheckoutPage.jsx by defining cart as prop for both jsx files
+  
+  //so that is how you lift a state up
+  const [cart, setCart] = useState([]);
+
+  useEffect(() => {
+    //This for fetching the cart data
+    axios.get("/api/cart-items").then((response) => {
+      setCart(response.data);
+    });
+  }, []);
+
   return (
     //This tells React all the pgaes that are in our website
     <Routes>
@@ -17,8 +31,8 @@ function App() {
 
       N/B: All these Routes linked share one HTML file which is index.html
       */}
-      <Route index element={<HomePage />} />
-      <Route path="checkout" element={<CheckoutPage />} />
+      <Route index element={<HomePage cart={cart} />} />
+      <Route path="checkout" element={<CheckoutPage cart={cart} />} />
       <Route path="orders" element={<OrdersPage />} />
       <Route path="Tracking" element={<TrackingPage />} />
       {/*In React Router, path="*" is a catch-all route that matches any URL that hasn't been matched by previous route definitions. */}
