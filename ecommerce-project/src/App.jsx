@@ -9,14 +9,18 @@ import { NotFoundPage } from "./pages/NotFoundPage";
 import "./App.css";
 
 function App() {
-  //This under is called lifting the state up because the cart was first in HomePage.jsx and i removed it from there and put it in App.jsx then later shared cart between HomePage.jsx and CheckoutPage.jsx by defining cart as prop for both jsx files
-  
+  //! This under is called lifting the state up because the cart was first in HomePage.jsx and i removed it from there and put it in App.jsx then later shared cart between HomePage.jsx and CheckoutPage.jsx by defining cart as prop for both jsx files
+
   //so that is how you lift a state up
   const [cart, setCart] = useState([]);
 
   useEffect(() => {
     //This for fetching the cart data
-    axios.get("/api/cart-items").then((response) => {
+
+    //  ?expand=product is a Query Parameter it lets us add additional info to our request
+    //! When the backend receives this Query Paramter it is going to add product details to the cart
+
+    axios.get("/api/cart-items?expand=product").then((response) => {
       setCart(response.data);
     });
   }, []);

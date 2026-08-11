@@ -1,6 +1,7 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { Header } from "../components/Header";
+import { formatMoney } from "../utils/money";
 import "./HomePage.css";
 import CheckMarkIcon from "../assets/images/icons/checkmark.png";
 export function HomePage({ cart }) {
@@ -29,6 +30,7 @@ export function HomePage({ cart }) {
         <div className="products-grid">
           {products.map((product) => {
             return (
+              //Never forget that when you loop through an array each element needs a key prop
               //React uses the key prop to identify which items in a list have changed, been added, or removed.
               <div key={product.id} className="product-container">
                 <div className="product-image-container">
@@ -50,7 +52,7 @@ export function HomePage({ cart }) {
                 </div>
 
                 <div className="product-price">
-                  ${(product.priceCents / 100).toFixed(2)}
+                  {formatMoney(product.priceCents)}
                 </div>
 
                 <div className="product-quantity-container">
