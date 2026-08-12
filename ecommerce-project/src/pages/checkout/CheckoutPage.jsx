@@ -125,10 +125,11 @@ export function CheckoutPage({ cart }) {
               })}
           </div>
 
-          {/*This checks whether payymentSummary exists first if its null at the start, it won't run the code */}
+          
 
           <div className="payment-summary">
             <div className="payment-summary-title">Payment Summary</div>
+            {/*This checks whether payymentSummary exists first if its null at the start, it won't run the code */}
             {paymentSummary && (
               <>
                 <div className="payment-summary-row">
