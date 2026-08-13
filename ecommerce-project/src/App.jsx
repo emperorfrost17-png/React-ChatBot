@@ -37,7 +37,7 @@ function App() {
       */}
       <Route index element={<HomePage cart={cart} />} />
       <Route path="checkout" element={<CheckoutPage cart={cart} />} />
-      <Route path="orders" element={<OrdersPage />} />
+      <Route path="orders" element={<OrdersPage cart={cart}/>} />
       <Route path="Tracking" element={<TrackingPage />} />
       {/*In React Router, path="*" is a catch-all route that matches any URL that hasn't been matched by previous route definitions. */}
       <Route path="*" element={<NotFoundPage />} />
