@@ -10,15 +10,20 @@ export function CheckoutPage({ cart }) {
   const [paymentSummary, setPaymentSummary] = useState(null);
 
   useEffect(() => {
-    axios
-      .get("/api/delivery-options?expand=estimatedDeliveryTime")
-      .then((response) => {
-        setDeliveryOptions(response.data);
-      });
+    const fetchCheckoutData = async () => {
+      // Fetch checkout data in parallel because delivery options and payment summary
+      // do not depend on each other. This is faster than waiting for one request
+      // to finish before starting the next one.
+      const [deliveryOptionsResponse, paymentSummaryResponse] =
+        await Promise.all([
+          axios.get("/api/delivery-options?expand=estimatedDeliveryTime"),
+          axios.get("/api/payment-summary"),
+        ]);
 
-    axios.get("/api/payment-summary").then((response) => {
-      setPaymentSummary(response.data);
-    });
+      setDeliveryOptions(deliveryOptionsResponse.data);
+      setPaymentSummary(paymentSummaryResponse.data);
+    };
+    fetchCheckoutData();
   }, []);
   return (
     <>

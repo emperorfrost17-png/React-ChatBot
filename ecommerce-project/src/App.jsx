@@ -13,16 +13,17 @@ function App() {
 
   //so that is how you lift a state up
   const [cart, setCart] = useState([]);
+  //This for fetching the cart data
 
   useEffect(() => {
-    //This for fetching the cart data
-
     //  ?expand=product is a Query Parameter it lets us add additional info to our request
     //! When the backend receives this Query Paramter it is going to add product details to the cart
-
-    axios.get("/api/cart-items?expand=product").then((response) => {
+    const fetchAppData = async () => {
+      const response = await axios.get("/api/cart-items?expand=product");
       setCart(response.data);
-    });
+    };
+
+    fetchAppData();
   }, []);
 
   return (
@@ -37,7 +38,7 @@ function App() {
       */}
       <Route index element={<HomePage cart={cart} />} />
       <Route path="checkout" element={<CheckoutPage cart={cart} />} />
-      <Route path="orders" element={<OrdersPage cart={cart}/>} />
+      <Route path="orders" element={<OrdersPage cart={cart} />} />
       <Route path="Tracking" element={<TrackingPage />} />
       {/*In React Router, path="*" is a catch-all route that matches any URL that hasn't been matched by previous route definitions. */}
       <Route path="*" element={<NotFoundPage />} />

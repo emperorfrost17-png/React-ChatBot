@@ -10,13 +10,16 @@ export function HomePage({ cart }) {
   useEffect(() => {
     //This is to get data from the backend
     //The string is for the URL where we are fetching the data from
-    //N:B returns a Promise and a Promise lets us wait for asynchronous code to finsish
-    //when it finishes in the future it runs the function in .then()
 
     //The difference between fetch() and axios.get() is that for axios, the data  will be saved directly into the response directly while for fetch it isn't
-    axios.get("/api/products").then((response) => {
+
+    //to use async await in useEffect you need to create a new function inside useEffect and then run the function
+    const getHomeData = async () => {
+      const response = await axios.get("/api/products");
       setProducts(response.data);
-    });
+    };
+
+    getHomeData();
   }, []);
 
   return (
