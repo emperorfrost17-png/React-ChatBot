@@ -39,9 +39,12 @@ function App() {
       <Route index element={<HomePage cart={cart} />} />
       <Route path="checkout" element={<CheckoutPage cart={cart} />} />
       <Route path="orders" element={<OrdersPage cart={cart} />} />
-      <Route path="Tracking" element={<TrackingPage />} />
+      {/* 
+      :orderId and :productId are called URL parameters. We can replace them with any text, and this allows us to save an order is and a product id directly in the URL
+      */}
+      <Route path="tracking/:orderId/:productId" element={<TrackingPage />} />
       {/*In React Router, path="*" is a catch-all route that matches any URL that hasn't been matched by previous route definitions. */}
-      <Route path="*" element={<NotFoundPage />} />
+      <Route path="*" element={<NotFoundPage cart={cart} />} />
     </Routes>
   );
 }
