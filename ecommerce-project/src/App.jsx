@@ -15,16 +15,15 @@ function App() {
   const [cart, setCart] = useState([]);
   //This for fetching the cart data
 
+  //  ?expand=product is a Query Parameter it lets us add additional info to our request
+  //! When the backend receives this Query Paramter it is going to add product details to the cart
+  const loadCart = async () => {
+    const response = await axios.get("/api/cart-items?expand=product");
+    setCart(response.data);
+  };
   useEffect(() => {
-    //  ?expand=product is a Query Parameter it lets us add additional info to our request
-    //! When the backend receives this Query Paramter it is going to add product details to the cart
-    const fetchAppData = async () => {
-      const response = await axios.get("/api/cart-items?expand=product");
-      setCart(response.data);
-    };
-
-    fetchAppData();
-  }, []);
+    loadCart();
+  }, [cart]);
 
   return (
     //This tells React all the pgaes that are in our website
@@ -36,7 +35,7 @@ function App() {
 
       N/B: All these Routes linked share one HTML file which is index.html
       */}
-      <Route index element={<HomePage cart={cart} />} />
+      <Route index element={<HomePage cart={cart} loadCart={loadCart}/>} />
       <Route path="checkout" element={<CheckoutPage cart={cart} />} />
       <Route path="orders" element={<OrdersPage cart={cart} />} />
       {/* 
