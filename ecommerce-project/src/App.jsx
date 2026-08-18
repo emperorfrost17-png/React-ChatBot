@@ -25,8 +25,6 @@ function App() {
     loadCart();
   }, [cart]);
 
-  
-
   return (
     //This tells React all the pgaes that are in our website
     <Routes>

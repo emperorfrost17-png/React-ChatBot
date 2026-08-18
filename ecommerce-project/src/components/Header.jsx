@@ -1,4 +1,6 @@
+import { useNavigate, useSearchParams } from "react-router";
 import { NavLink } from "react-router";
+import { useState } from "react";
 import "./Header.css";
 import LogoWhite from "../assets/images/logo-white.png";
 import MobileLogoWhite from "../assets/images/mobile-logo-white.png";
@@ -6,6 +8,19 @@ import CartIcon from "../assets/images/icons/cart-icon.png";
 import SearchIcon from "../assets/images/icons/search-icon.png";
 
 export function Header({ cart }) {
+  const navigate = useNavigate();
+  const [searchParams] = useSearchParams();
+  const search = searchParams.get("search");
+
+  const [searchInput, setSearchInput] = useState(search || '');
+  const inputText = (event) => {
+    setSearchInput(event.target.value);
+  };
+  const searchProducts = () => {
+    //! '/' navigates to the home page
+    //! '?search=${search}' saves the search text in the URL so we can share it between pages
+    navigate(`/?search=${searchInput}`);
+  };
   let totalQuantity = 0;
 
   if (cart) {
@@ -28,9 +43,15 @@ export function Header({ cart }) {
       </div>
 
       <div className="middle-section">
-        <input className="search-bar" type="text" placeholder="Search" />
+        <input
+          className="search-bar"
+          type="text"
+          placeholder="Search"
+          value={searchInput}
+          onChange={inputText}
+        />
 
-        <button className="search-button">
+        <button className="search-button" onClick={searchProducts}>
           <img className="search-icon" src={SearchIcon} />
         </button>
       </div>

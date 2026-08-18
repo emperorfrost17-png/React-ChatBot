@@ -1,4 +1,5 @@
 import axios from "axios";
+import { useSearchParams } from "react-router";
 import { useEffect, useState } from "react";
 import { Header } from "../../components/Header";
 import { ProductsGrid } from "./ProductsGrid";
@@ -6,6 +7,8 @@ import "./HomePage.css";
 import CheckMarkIcon from "../../assets/images/icons/checkmark.png";
 export function HomePage({ cart, loadCart }) {
   const [products, setProducts] = useState([]);
+  const [searchParams] = useSearchParams();
+  const search = searchParams.get("search");
 
   useEffect(() => {
     //This is to get data from the backend
@@ -15,12 +18,15 @@ export function HomePage({ cart, loadCart }) {
 
     //to use async await in useEffect you need to create a new function inside useEffect and then run the function
     const getHomeData = async () => {
-      const response = await axios.get("/api/products");
+      const urlPath = search
+        ? `/api/products?search=${search}`
+        : `/api/products`;
+        const response = await axios.get(urlPath)
       setProducts(response.data);
     };
 
     getHomeData();
-  }, []);
+  }, [search]);
 
   return (
     <>
