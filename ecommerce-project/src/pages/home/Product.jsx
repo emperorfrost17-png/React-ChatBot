@@ -5,7 +5,7 @@ import CheckMarkIcon from "../../assets/images/icons/checkmark.png";
 export function Product({ product, loadCart }) {
   const [quantity, setQuantity] = useState(1);
   const addToCart = async () => {
-    //!  .post() is for creating/updating/sending data in the backend
+    //!  .post() is for creating data in the backend
     //the second parameter in post() is called the request body for sending information to the backend
     await axios.post("/api/cart-items", {
       productId: product.id,
@@ -16,6 +16,10 @@ export function Product({ product, loadCart }) {
     await loadCart();
   };
   const selectQuantity = (event) => {
+    //value = current selected value shown in the input and updates after onChange
+    //onChange = update state when the user picks a different option and the new state will show in the value
+
+    //it is called controlled input
     // Number() is for converting the selected number from a string to a number
     const quantitySelected = Number(event.target.value);
     setQuantity(quantitySelected);
@@ -41,11 +45,6 @@ export function Product({ product, loadCart }) {
       <div className="product-price">{formatMoney(product.priceCents)}</div>
 
       <div className="product-quantity-container">
-        {/* value = current selected value shown in the input and updates after onChange
-                  onChange = update state when the user picks a different option and the new state will show in the value 
-                  
-                  it is called controlled input
-                  */}
         <select value={quantity} onChange={selectQuantity}>
           <option value="1">1</option>
           <option value="2">2</option>
