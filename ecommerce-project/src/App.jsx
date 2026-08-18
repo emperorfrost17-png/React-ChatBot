@@ -37,7 +37,7 @@ function App() {
       */}
       <Route index element={<HomePage cart={cart} loadCart={loadCart}/>} />
       <Route path="checkout" element={<CheckoutPage cart={cart} loadCart={loadCart}/>} />
-      <Route path="orders" element={<OrdersPage cart={cart} />} />
+      <Route path="orders" element={<OrdersPage cart={cart} loadCart={loadCart} />} />
       {/* 
       :orderId and :productId are called URL parameters. We can replace them with any text, and this allows us to save an order id and a product id directly in the URL
       */}
