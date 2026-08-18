@@ -4,6 +4,7 @@ import axios from "axios";
 import CheckMarkIcon from "../../assets/images/icons/checkmark.png";
 export function Product({ product, loadCart }) {
   const [quantity, setQuantity] = useState(1);
+  const [added, setAdded] = useState(false);
   const addToCart = async () => {
     //!  .post() is for creating data in the backend
     //the second parameter in post() is called the request body for sending information to the backend
@@ -14,6 +15,12 @@ export function Product({ product, loadCart }) {
       quantity,
     });
     await loadCart();
+    setAdded(true);
+
+    //this makes addem message disappear after 2 seconds
+    setTimeout(() => {
+      setAdded(false);
+    }, 2000);
   };
   const selectQuantity = (event) => {
     //value = current selected value shown in the input and updates after onChange
@@ -61,7 +68,7 @@ export function Product({ product, loadCart }) {
 
       <div className="product-spacer"></div>
 
-      <div className="added-to-cart">
+      <div className="added-to-cart" style={{ opacity: added ? 1 : 0 }}>
         <img src={CheckMarkIcon} />
         Added
       </div>
