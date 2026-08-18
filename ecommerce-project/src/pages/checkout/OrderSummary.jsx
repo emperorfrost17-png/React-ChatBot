@@ -13,7 +13,7 @@ export function OrderSummary({ cart, deliveryOptions, loadCart }) {
               return deliveryOption.id === cartItem.deliveryOptionId;
             },
           );
-          
+
           return (
             //Never forget that when you loop through an array each element needs a key prop
             //React uses the key prop to identify which items in a list have changed, been added, or removed.
@@ -21,7 +21,7 @@ export function OrderSummary({ cart, deliveryOptions, loadCart }) {
               <DeliveryDate selectedDeliveryOption={selectedDeliveryOption} />
 
               <div className="cart-item-details-grid">
-                <CartItemDetails cartItem={cartItem} loadCart={loadCart}/>
+                <CartItemDetails cartItem={cartItem} loadCart={loadCart} />
 
                 <DeliveryOptions
                   deliveryOptions={deliveryOptions}
