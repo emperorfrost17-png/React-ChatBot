@@ -9,13 +9,25 @@ import SearchIcon from "../assets/images/icons/search-icon.png";
 
 export function Header({ cart }) {
   const navigate = useNavigate();
+  //This gets the text from the search
   const [searchParams] = useSearchParams();
+
+  // Search flow step 1:
+  // Read the current search text from the URL.
+  // Example: /?search=shirt gives us "shirt".
   const search = searchParams.get("search");
 
+  // Search flow step 2:
+  // Store what the user types into the search bar.
+  // If the page already has a search in the URL, use it as the starting value.
   const [searchInput, setSearchInput] = useState(search || '');
   const inputText = (event) => {
     setSearchInput(event.target.value);
   };
+
+  // Search flow step 3:
+  // When the search button is clicked, go to the home page and save the
+  // search text in the URL. This lets HomePage read it and fetch matching products.
   const searchProducts = () => {
     //! '/' navigates to the home page
     //! '?search=${search}' saves the search text in the URL so we can share it between pages

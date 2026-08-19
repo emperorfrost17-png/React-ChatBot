@@ -8,6 +8,10 @@ import CheckMarkIcon from "../../assets/images/icons/checkmark.png";
 export function HomePage({ cart, loadCart }) {
   const [products, setProducts] = useState([]);
   const [searchParams] = useSearchParams();
+
+  // Search flow step 4:
+  // HomePage reads the search text from the URL.
+  // Example: /?search=shirt makes search equal to "shirt".
   const search = searchParams.get("search");
 
   useEffect(() => {
@@ -18,13 +22,22 @@ export function HomePage({ cart, loadCart }) {
 
     //to use async await in useEffect you need to create a new function inside useEffect and then run the function
     const getHomeData = async () => {
+      // Search flow step 5:
+      // If there is search text, ask the backend for matching products.
+      // If there is no search text, ask the backend for all products.
       const urlPath = search
         ? `/api/products?search=${search}`
         : `/api/products`;
-        const response = await axios.get(urlPath)
+
+      // Search flow step 6:
+      // Save the products returned by the backend into React state.
+      // Updating this state makes ProductsGrid display the new results.
+      const response = await axios.get(urlPath);
       setProducts(response.data);
     };
 
+    // Search flow step 7:
+    // This runs when HomePage first loads and whenever the URL search text changes.
     getHomeData();
   }, [search]);
 
