@@ -7,6 +7,7 @@ import "./HomePage.css";
 import CheckMarkIcon from "../../assets/images/icons/checkmark.png";
 export function HomePage({ cart, loadCart }) {
   const [products, setProducts] = useState([]);
+  //This gets the search text
   const [searchParams] = useSearchParams();
 
   // Search flow step 4:
