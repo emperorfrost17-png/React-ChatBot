@@ -17,7 +17,7 @@ export function Product({ product, loadCart }) {
     await loadCart();
     setAdded(true);
 
-    //this makes addem message disappear after 2 seconds
+    //this makes added message disappear after 2 seconds
     setTimeout(() => {
       setAdded(false);
     }, 2000);
