@@ -82,6 +82,7 @@ describe("Product component", () => {
     const quantitySelector = screen.getByTestId("quantity-selector");
     const addToCartButton = screen.getByTestId("add-to-cart-button");
     //The userEvent.selectOptions allows selecting a value in a <select> element.
+    //which helps us update the quantity
     await user.selectOptions(quantitySelector, "9");
     await user.click(addToCartButton);
     //This allows you to check whether the given form element has the specified value.
