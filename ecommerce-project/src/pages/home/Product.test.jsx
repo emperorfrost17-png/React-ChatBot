@@ -13,7 +13,7 @@ describe("Product component", () => {
   let product;
   //vi.fn() creates a fake function that doesn't do anything (basically a mock)
   let loadCart;
-
+  let user;
   //this runs code before each test
   beforeEach(() => {
     product = {
@@ -28,6 +28,7 @@ describe("Product component", () => {
       keywords: ["socks", "sports", "apparel"],
     };
     loadCart = vi.fn();
+    user = userEvent.setup();
   });
   it("display the product details correctly", () => {
     //this renders a component in a fake web page
@@ -63,7 +64,7 @@ describe("Product component", () => {
     render(<Product product={product} loadCart={loadCart} />);
 
     // userEvent helps us simulate events like a click
-    const user = userEvent.setup();
+
     const addToCartButton = screen.getByTestId("add-to-cart-button");
     //this simulates a click event
     // i used await because .click() takes some time to process
@@ -74,5 +75,20 @@ describe("Product component", () => {
       quantity: 1,
     });
     expect(loadCart).toHaveBeenCalled();
+  });
+  it("if it can select a quantity", async () => {
+    render(<Product product={product} loadCart={loadCart} />);
+
+    const quantitySelector = screen.getByTestId("quantity-selector");
+    const addToCartButton = screen.getByTestId("add-to-cart-button");
+    //The userEvent.selectOptions allows selecting a value in a <select> element.
+    await user.selectOptions(quantitySelector, "9");
+    await user.click(addToCartButton);
+    //This allows you to check whether the given form element has the specified value.
+    expect(quantitySelector).toHaveValue("9");
+    expect(axios.post).toHaveBeenCalledWith("/api/cart-items", {
+      productId: "e43638ce-6aa0-4b85-b27f-e1d07eb678c6",
+      quantity: 9,
+    });
   });
 });
