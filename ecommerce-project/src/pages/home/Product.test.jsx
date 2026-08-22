@@ -11,7 +11,6 @@ vi.mock("axios");
 
 describe("Product component", () => {
   let product;
-  //vi.fn() creates a fake function that doesn't do anything (basically a mock)
   let loadCart;
   let user;
   //this runs code before each test
@@ -27,6 +26,7 @@ describe("Product component", () => {
       priceCents: 1090,
       keywords: ["socks", "sports", "apparel"],
     };
+    //vi.fn() creates a fake function that doesn't do anything (basically a mock)
     loadCart = vi.fn();
     user = userEvent.setup();
   });
